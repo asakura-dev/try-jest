@@ -8,4 +8,8 @@ describe('money', (): void => {
     const product2 = five.times(3);
     expect(product2.amount).toEqual(15);
   });
+  test('test equality', (): void => {
+    expect((new Dollar(5)).equals(new Dollar(5))).toBeTruthy();
+    expect((new Dollar(5)).equals(new Dollar(6))).toBeFalsy();
+  });
 });
