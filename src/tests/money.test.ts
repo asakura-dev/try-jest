@@ -4,9 +4,9 @@ describe('money', (): void => {
   test('test multiplication', (): void => {
     const five = new Dollar(5);
     const product = five.times(2);
-    expect(product.amount).toEqual(10);
+    expect((new Dollar(10).equals(product))).toBeTruthy();
     const product2 = five.times(3);
-    expect(product2.amount).toEqual(15);
+    expect((new Dollar(15)).equals(product2)).toBeTruthy();
   });
   test('test equality', (): void => {
     expect((new Dollar(5)).equals(new Dollar(5))).toBeTruthy();
