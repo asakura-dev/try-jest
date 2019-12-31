@@ -1,6 +1,6 @@
 import Money from "../money";
 import Expression from "../expression";
-import Bank from "../../bank";
+import Bank from "../bank";
 import Sum from "../sum";
 describe("money", (): void => {
   test("test multiplication", (): void => {
@@ -41,5 +41,14 @@ describe("money", (): void => {
     const bank = new Bank();
     const result = bank.reduce(Money.dollar(1), "USD");
     expect(Money.dollar(1).equals(result)).toBeTruthy();
+  });
+  test("reduce money different currency", (): void => {
+    const bank = new Bank();
+    bank.addRate("CHF", "USD", 2);
+    const result = bank.reduce(Money.franc(2), "USD");
+    expect(Money.dollar(1).equals(result)).toBeTruthy();
+  });
+  test("identity rate", (): void => {
+    expect(new Bank().rate("USD", "USD")).toEqual(1);
   });
 });
