@@ -1,4 +1,5 @@
-import Expression from './expression';
+import Expression from "./expression";
+import Sum from "./sum";
 export default class Money implements Expression {
   protected amount: number = 0;
   protected currency: string;
@@ -9,15 +10,13 @@ export default class Money implements Expression {
   times(multiplier: number): Money {
     return new Money(this.amount * multiplier, this.currency);
   }
-  plus(addend: Money) : Expression{
-    return new Money(this.amount + addend.amount, this.currency);
+  plus(addend: Money): Expression {
+    return new Sum(this, addend);
   }
   equals(object: any) {
     const money = object as Money;
-    return (
-      this.amount === money.amount && 
-      this.currency === money.currency
-    );
+    console.log(money);
+    return this.amount === money.amount && this.currency === money.currency;
   }
   getCurrency() {
     return this.currency;
