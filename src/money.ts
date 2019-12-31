@@ -1,5 +1,6 @@
 export default abstract class Money {
   protected amount: number = 0;
+  protected currency: string;
   abstract times(multiplier: number): Money;
   equals(object: any) {
     const money = object as Money;
@@ -8,30 +9,35 @@ export default abstract class Money {
       this.constructor === money.constructor
     );
   }
+  getCurrency() {
+    return this.currency;
+  }
   static dollar(amount: number): Money {
-    return new Dollar(amount);
+    return new Dollar(amount, "USD");
   }
   static franc(amount: number): Money {
-    return new Franc(amount);
+    return new Franc(amount, "CHF");
   }
 }
 
 export class Dollar extends Money {
-  constructor(amount: number) {
+  constructor(amount: number, currency: string) {
     super();
     this.amount = amount;
+    this.currency = currency;
   }
   times(multiplier: number): Money {
-    return new Dollar(this.amount * multiplier);
+    return Money.dollar(this.amount * multiplier);
   }
 }
 
 export class Franc extends Money {
-  constructor(amount: number) {
+  constructor(amount: number, currency: string) {
     super();
     this.amount = amount;
+    this.currency = currency;
   }
   times(multiplier: number): Money {
-    return new Franc(this.amount * multiplier);
+    return Money.franc(this.amount * multiplier);
   }
 }

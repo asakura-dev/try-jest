@@ -36,4 +36,8 @@ describe('money', (): void => {
         Money.franc(15).equals(five.times(3))
     ).toBeTruthy();
   });
+  test('test currency', (): void => {
+    expect("USD").toBe(Money.dollar(1).getCurrency());
+    expect("CHF").toBe(Money.franc(1).getCurrency());
+  });
 });
