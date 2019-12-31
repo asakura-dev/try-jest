@@ -59,4 +59,22 @@ describe("money", (): void => {
     const result = bank.reduce(fiveBucks.plus(tenFrancs), "USD");
     expect(Money.dollar(10).equals(result)).toBeTruthy();
   });
+  test("sum plus money", (): void => {
+    const fiveBucks: Expression = Money.dollar(5);
+    const tenFrancs: Expression = Money.franc(10);
+    const bank = new Bank();
+    bank.addRate("CHF", "USD", 2);
+    const sum: Expression = new Sum(fiveBucks, tenFrancs).plus(fiveBucks);
+    const result = bank.reduce(sum, "USD");
+    expect(Money.dollar(15).equals(result)).toBeTruthy();
+  });
+  test("sum times", (): void => {
+    const fiveBucks: Expression = Money.dollar(5);
+    const tenFrancs: Expression = Money.franc(10);
+    const bank = new Bank();
+    bank.addRate("CHF", "USD", 2);
+    const sum: Expression = new Sum(fiveBucks, tenFrancs).times(2);
+    const result = bank.reduce(sum, "USD");
+    expect(Money.dollar(20).equals(result)).toBeTruthy();
+  });
 });

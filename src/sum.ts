@@ -9,7 +9,13 @@ export default class Sum implements Expression {
     this.addend = addend;
   }
   plus(addend: Expression): Expression {
-    return null;
+    return new Sum(this, addend);
+  }
+  times(multiplier: number): Expression {
+    return new Sum(
+      this.augend.times(multiplier),
+      this.addend.times(multiplier)
+    );
   }
   reduce(bank: Bank, to: string): Money {
     const amount =
