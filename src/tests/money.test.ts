@@ -51,4 +51,12 @@ describe("money", (): void => {
   test("identity rate", (): void => {
     expect(new Bank().rate("USD", "USD")).toEqual(1);
   });
+  test("mixed addition", (): void => {
+    const fiveBucks: Expression = Money.dollar(5);
+    const tenFrancs: Expression = Money.franc(10);
+    const bank = new Bank();
+    bank.addRate("CHF", "USD", 2);
+    const result = bank.reduce(fiveBucks.plus(tenFrancs), "USD");
+    expect(Money.dollar(10).equals(result)).toBeTruthy();
+  });
 });

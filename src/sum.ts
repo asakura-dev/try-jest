@@ -2,14 +2,19 @@ import Money from "./money";
 import Expression from "./expression";
 import Bank from "./bank";
 export default class Sum implements Expression {
-  public augend: Money;
-  public addend: Money;
-  constructor(augend: Money, addend: Money) {
+  public augend: Expression;
+  public addend: Expression;
+  constructor(augend: Expression, addend: Expression) {
     this.augend = augend;
     this.addend = addend;
   }
+  plus(addend: Expression): Expression {
+    return null;
+  }
   reduce(bank: Bank, to: string): Money {
-    const amount = this.augend.getAmount() + this.addend.getAmount();
+    const amount =
+      this.augend.reduce(bank, to).getAmount() +
+      this.addend.reduce(bank, to).getAmount();
     return new Money(amount, to);
   }
 }
