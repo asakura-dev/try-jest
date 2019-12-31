@@ -1,4 +1,4 @@
-import Money, { Franc } from '../money';
+import Money from '../money';
 
 describe('money', (): void => {
   test('test multiplication', (): void => {
@@ -18,31 +18,11 @@ describe('money', (): void => {
         Money.dollar(5).equals(Money.dollar(6))
     ).toBeFalsy();
     expect(
-        Money.franc(5).equals(Money.franc(5))
-    ).toBeTruthy();
-    expect(
-        Money.franc(5).equals(Money.franc(6)
-    )).toBeFalsy();
-    expect(
         Money.franc(5).equals(Money.dollar(5))
     ).toBeFalsy();
-  });
-  test('test franc multiplication', (): void => {
-    const five = Money.franc(5);
-    expect(
-        Money.franc(10).equals(five.times(2))
-    ).toBeTruthy();
-    expect(
-        Money.franc(15).equals(five.times(3))
-    ).toBeTruthy();
   });
   test('test currency', (): void => {
     expect("USD").toBe(Money.dollar(1).getCurrency());
     expect("CHF").toBe(Money.franc(1).getCurrency());
-  });
-  test('test difference class equality', (): void => {
-    expect(
-        new Money(10, "CHF").equals(new Franc(10, "CHF"))
-    ).toBeTruthy();
   });
 });
