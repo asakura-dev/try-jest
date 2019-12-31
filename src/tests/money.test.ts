@@ -1,4 +1,4 @@
-import Money from '../money';
+import Money, { Franc } from '../money';
 
 describe('money', (): void => {
   test('test multiplication', (): void => {
@@ -39,5 +39,10 @@ describe('money', (): void => {
   test('test currency', (): void => {
     expect("USD").toBe(Money.dollar(1).getCurrency());
     expect("CHF").toBe(Money.franc(1).getCurrency());
+  });
+  test('test difference class equality', (): void => {
+    expect(
+        new Money(10, "CHF").equals(new Franc(10, "CHF"))
+    ).toBeTruthy();
   });
 });
