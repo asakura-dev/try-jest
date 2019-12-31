@@ -21,6 +21,9 @@ export default class Money implements Expression {
   getCurrency() {
     return this.currency;
   }
+  getAmount() {
+    return this.amount;
+  }
   static dollar(amount: number): Money {
     return new Money(amount, "USD");
   }
