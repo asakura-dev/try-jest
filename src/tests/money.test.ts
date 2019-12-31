@@ -1,5 +1,3 @@
-import Dollar from "../dollar";
-import Franc from "../franc";
 import Money from '../money';
 
 describe('money', (): void => {
