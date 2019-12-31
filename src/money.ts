@@ -13,9 +13,11 @@ export default class Money implements Expression {
   plus(addend: Money): Expression {
     return new Sum(this, addend);
   }
+  reduce(to: string): Money {
+    return this;
+  }
   equals(object: any) {
     const money = object as Money;
-    console.log(money);
     return this.amount === money.amount && this.currency === money.currency;
   }
   getCurrency() {
