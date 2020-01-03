@@ -1,13 +1,11 @@
-export default class WasRun {
+import TestCase from "./testCase";
+
+export default class WasRun extends TestCase {
   wasRun: boolean = false;
-  funcName: string;
   constructor(name: string) {
-    this.funcName = name;
+    super(name);
   }
   testMethod() {
     this.wasRun = true;
-  }
-  run() {
-    this[this.funcName]();
   }
 }
