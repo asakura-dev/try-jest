@@ -2,12 +2,19 @@ import TestCase from "./testCase";
 import WasRun from "./wasRun";
 import assert from "./assert";
 class TestCaseTest extends TestCase {
+  test: WasRun;
+  setUp() {
+    this.test = new WasRun("testMethod");
+  }
   testRunning() {
-    const test = new WasRun("testMethod");
-    assert(!test.wasRun);
-    test.run();
-    assert(test.wasRun);
+    this.test.run();
+    assert(this.test.wasRun);
+  }
+  testSetup() {
+    this.test.run();
+    assert(this.test.wasSetUp);
   }
 }
 
 new TestCaseTest("testRunning").run();
+new TestCaseTest("testSetup").run();
