@@ -4,10 +4,12 @@ export default class TestCase {
     this.funcName = name;
   }
   setUp() {}
+  tearDown() {}
   run() {
     this.setUp();
     if (this[this.funcName]) {
       this[this.funcName]();
     }
+    this.tearDown();
   }
 }

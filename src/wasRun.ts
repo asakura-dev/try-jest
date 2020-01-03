@@ -1,15 +1,17 @@
 import TestCase from "./testCase";
 
 export default class WasRun extends TestCase {
-  wasRun: boolean = false;
-  wasSetUp: boolean = false;
+  public log: string = "";
   constructor(name: string) {
     super(name);
   }
   testMethod() {
-    this.wasRun = true;
+    this.log += "testMethod ";
   }
   setUp() {
-    this.wasSetUp = true;
+    this.log += "setUp ";
+  }
+  tearDown() {
+    this.log += "tearDown ";
   }
 }
